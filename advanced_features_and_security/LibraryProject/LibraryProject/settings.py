@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure--i$)g!va8%(p^4%0ado46n$cwta_7s#72y$!)k(n+^+35=**n1'
+SECRET_KEY = 'django-insecure-5cp_@45%ps(tbgh9+7nnyn_qld39!q(fjhzty!u1=n)a==v7gh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bookshelf',
-    'relationship_app',
 ]
 
 MIDDLEWARE = [
@@ -122,3 +121,39 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = 'list_books'
+LOGOUT_REDIRECT_URL = 'login'
+
+AUTH_USER_MODEL = 'bookshelf.CustomUser' 
+
+# ✅ SECURITY BEST PRACTICES CONFIGURATION
+
+SECURE_BROWSER_XSS_FILTER = True  # Prevent XSS in supported browsers
+X_FRAME_OPTIONS = 'DENY'  # Prevent clickjacking
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Stop MIME type sniffing
+
+CSRF_COOKIE_SECURE = True  # CSRF cookie only over HTTPS
+SESSION_COOKIE_SECURE = True  # Session cookie only over HTTPS
+SECURE_SSL_REDIRECT = True  # ✅ Redirect all HTTP traffic to HTTPS
+SECURE_HSTS_SECONDS = 31536000  # Enable HTTP Strict Transport Security
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Apply HSTS to all subdomains
+SECURE_HSTS_PRELOAD = True  # Preload HSTS in browsers
+# Enable X-Content-Type-Options header
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevent MIME type sniffing
+# Enable X-Frame-Options header
+X_FRAME_OPTIONS = 'DENY'  # Prevent clickjacking
+# Enable X-XSS-Protection header
+SECURE_BROWSER_XSS_FILTER = True  # Enable browser XSS filter   
+# Enable X-Content-Type-Options header
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevent MIME type sniffing
+# Enable X-Frame-Options header
+X_FRAME_OPTIONS = 'DENY'  # Prevent clickjacking
+# Enable X-XSS-Protection header
+SECURE_BROWSER_XSS_FILTER = True  # Enable browser XSS filter
+# Enable Content Security Policy (CSP)
+SECURE_CSP = True  # Enable Content Security Policy
+# Enable Referrer Policy
+SECURE_REFERRER_POLICY = 'no-referrer-when-downgrade'  # Set referrer policy
+# ✅ Security settings for SSL and Proxy headers
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
