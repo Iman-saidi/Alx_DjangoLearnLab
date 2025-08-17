@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Posts tagged with "{{ tag.name }}"</h2>
+{% for post in posts %}
+  <h3><a href="{% url 'post-detail' post.pk %}">{{ post.title }}</a></h3>
+  <p>{{ post.content|truncatechars:100 }}</p>
+{% empty %}
+  <p>No posts under this tag yet.</p>
+{% endfor %}
+<a href="{% url 'post-list' %}">Back to all posts</a>
+{% endblock %}
+
