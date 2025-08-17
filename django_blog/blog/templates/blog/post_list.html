@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>All Posts</h2>
+<form method="GET" action="{% url 'post-search' %}">
+    <input type="text" name="q" placeholder="Search posts..." value="{{ request.GET.q }}">
+    <button type="submit">Search</button>
+</form>
+{% for post in posts %}
+    <h3><a href="{% url 'post-detail' post.pk %}">{{ post.title }}</a></h3>
+    <p>{{ post.content|slice:":100" }}...</p>
+    <small>By {{ post.author }} on {{ post.published_date }}</small>
+{% empty %}
+    <p>No posts yet.</p>
+{% endfor %}
+{% endblock %}
