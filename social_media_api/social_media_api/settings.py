@@ -25,8 +25,11 @@ SECRET_KEY = 'django-insecure-(z&%$j5br+5g7e+#v!b4p7q=q98d3c(t=af=&io97j#&^(dwpy
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['yourdomain.com', 'www.yourdomain.com']
 
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = 'DENY'
+SECURE_SSL_REDIRECT = True
 
 # Application definition
 
